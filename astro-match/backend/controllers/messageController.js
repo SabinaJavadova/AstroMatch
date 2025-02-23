@@ -1,37 +1,38 @@
 const Message = require("../models/message");
 const mongoose = require("mongoose");
-function isValidObjectId(id) {
-    return /^[0-9a-fA-F]{24}$/.test(id);
+
+const sendMessage = async (req, res, io) => {
+  const { senderId, receiverId, message } = req.body;
+
+  console.log("Received data:", req.body); // Göndərilən məlumatı yoxlayın
+
+  if (!senderId || !receiverId || !message) {
+    return res.status(400).json({ message: "Bütün sahələr tələb olunur!" });
   }
 
-exports.sendMessage = async (req, res) => {
-    const { senderId, receiverId, messageText } = req.body;
+  try {
+    const newMessage = new Message({
+      sender: senderId,
+      receiver: receiverId,
+      message: message,
+    });
 
-    // Əgər ID-lər düzgün formatda deyilsə, səhv mesajı göndəririk
-    if (!isValidObjectId(senderId) || !isValidObjectId(receiverId)) {
-      return res.status(400).json({ message: "Yanlış ID formatı!" });
-    }
-  
-    try {
-      // ID-ləri ObjectId formatına çeviririk
-      const sender = new mongoose.Types.ObjectId(senderId);
-      const receiver = new mongoose.Types.ObjectId(receiverId);
-  
-      const newMessage = new Message({
-        sender: sender,
-        receiver: receiver,
-        message: messageText,
-      });
-  
-      await newMessage.save();
-      res.status(200).json({ message: "Mesaj göndərildi!" });
-    } catch (err) {
-      console.error("Mesaj xətası:", err);
-      res.status(500).json({ message: "Xəta baş verdi!" });
-    }
-  };
+    await newMessage.save();
+    console.log("Mesaj bazaya göndərildi:", newMessage);
 
-exports.getMessages = async (req, res) => {
+    io.to(receiverId).emit("receive_message", {
+      senderId,
+      message,
+    });
+
+    res.status(201).json({ message: "Mesaj uğurla göndərildi!" });
+  } catch (err) {
+    console.error("Mesaj göndərmə xətası:", err);
+    res.status(500).json({ message: "Daxili server xətası!" });
+  }
+};
+
+const getMessages = async (req, res) => {
   const { userId } = req.params;
 
   try {
@@ -39,16 +40,17 @@ exports.getMessages = async (req, res) => {
       return res.status(400).json({ message: "Yanlış ID formatı!" });
     }
 
-    // İstifadəçinin göndərdiyi və qəbul etdiyi mesajları tapırıq
     const messages = await Message.find({
       $or: [{ sender: userId }, { receiver: userId }],
     })
-      .populate("sender receiver", "name email") // sender və receiver məlumatlarını gətiririk
+      .populate("sender", "name email")
+      .populate("receiver", "name email")
       .exec();
 
     res.status(200).json(messages);
   } catch (err) {
-    console.error("Mesajları almaq xətası:", err);
     res.status(500).json({ message: "Xəta baş verdi!" });
   }
 };
+
+module.exports = { sendMessage, getMessages };

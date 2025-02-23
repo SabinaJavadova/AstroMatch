@@ -1,0 +1,288 @@
+.home-container {
+  font-family: "Arial", sans-serif;
+  color: #c0c0c0; /* Gümüşü rəng */
+  background-color: #000033; /* Qaranlıq qara fon */
+  overflow-x: hidden;
+  padding-bottom: 50px;
+  position: relative;
+
+  /* Scroll Animasiyaları */
+  .scroll-animation {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hero Section */
+  .hero-section {
+    height: 100vh;
+    background: url("https://www.pixelstalk.net/wp-content/uploads/2016/10/Astrology-Desktop-Wallpaper.jpg")
+      no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+
+    .hero-content {
+      max-width: 600px;
+      z-index: 2; /* Məzmunu şəkilin önündə göstəririk */
+      color: white;
+
+      h1 {
+        font-size: 60px;
+        margin-bottom: 20px;
+        color: #ffd700; /* Qızılı rəng */
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-size: 22px;
+        margin-bottom: 30px;
+        font-weight: 400;
+        color: #87ceeb; /* Açıq göy rəng */
+      }
+
+      button {
+        background-color: #4b0082; /* Bənövşəyi rəng */
+        padding: 18px 30px;
+        font-size: 18px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+          background-color: #ffd700; /* Qızılı rəng */
+          color: #000033; /* Qaranlıq qara */
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    /* Dark overlay over the background image to improve text visibility */
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 51, 0.6); /* Qaranlıq overlay */
+      z-index: 1; /* Overlayi məzmunun altına yerləşdiririk */
+    }
+  }
+
+  /* Features Section */
+  .features-section {
+    background-color: #2e0854; /* Tünd bənövşəyi fon */
+    padding: 70px 20px;
+    text-align: center;
+
+    h2 {
+      color: #ffd700; /* Qızılı rəng */
+      margin-bottom: 40px;
+      font-size: 35px;
+      font-weight: 600;
+    }
+
+    .feature-items {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+
+      .feature-item {
+        background-color: #4b0082; /* Bənövşəyi rəng */
+        padding: 30px;
+        width: 250px;
+        border-radius: 10px;
+        color: #c0c0c0; /* Gümüşü rəng */
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background-color 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+        &:hover {
+          transform: translateY(-10px);
+          background-color: #0b3d91; /* Tünd kosmik mavi */
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+          font-size: 22px;
+          color: #ffd700; /* Qızılı rəng */
+        }
+
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  /* About Section */
+  .about-section {
+    background-color: #000033; /* Qaranlıq qara fon */
+    padding: 70px 20px;
+    text-align: center;
+
+    h2 {
+      color: #ffd700; /* Qızılı rəng */
+      margin-bottom: 20px;
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 20px;
+      color: #87ceeb; /* Açıq göy rəng */
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button {
+      background-color: #4b0082; /* Bənövşəyi rəng */
+      padding: 14px 25px;
+      font-size: 18px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background-color: #ffd700; /* Qızılı rəng */
+        color: #000033; /* Qaranlıq qara */
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  /* Contact Section */
+  .contact-section {
+    background-color: #2e0854; /* Tünd bənövşəyi fon */
+    padding: 70px 20px;
+    text-align: center;
+
+    h2 {
+      color: #ffd700; /* Qızılı rəng */
+      margin-bottom: 20px;
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 20px;
+      color: #87ceeb; /* Açıq göy rəng */
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button {
+      background-color: #4b0082; /* Bənövşəyi rəng */
+      padding: 14px 25px;
+      font-size: 18px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background-color: #ffd700; /* Qızılı rəng */
+        color: #000033; /* Qaranlıq qara */
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  /* Responsivlik üçün Media Query-lər */
+  @media (max-width: 1024px) {
+    /* Tablet üçün */
+    .hero-section {
+      .hero-content {
+        h1 {
+          font-size: 50px;
+        }
+        p {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .features-section {
+      .feature-items {
+        .feature-item {
+          width: 45%; /* İki sütunlu tərtibat */
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Kiçik tablet və telefon üçün */
+    .hero-section {
+      .hero-content {
+        h1 {
+          font-size: 40px;
+        }
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .features-section {
+      .feature-items {
+        .feature-item {
+          width: 100%; /* Bir sütunlu tərtibat */
+        }
+      }
+    }
+
+    .about-section,
+    .contact-section {
+      padding: 50px 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Telefon üçün */
+    .hero-section {
+      .hero-content {
+        h1 {
+          font-size: 30px;
+        }
+        p {
+          font-size: 16px;
+        }
+        button {
+          padding: 12px 20px;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .features-section {
+      padding: 50px 10px;
+    }
+
+    .about-section,
+    .contact-section {
+      padding: 40px 10px;
+    }
+  }
+}

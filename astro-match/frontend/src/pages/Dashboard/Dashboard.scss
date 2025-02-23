@@ -1,0 +1,85 @@
+.dashboard {
+  width: 100%;
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #2E0854; /* Tünd bənövşəyi */
+  color: #87CEEB; /* Açıq göy rəng */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  animation: fadeIn 1.5s ease-in-out;
+
+  h1 {
+    font-size: 36px;
+    color: #FFD700; /* Qızılı rəng */
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 18px;
+    color: #87CEEB; /* Açıq göy rəng */
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 28px;
+    color: #FFD700; /* Qızılı rəng */
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+
+    li {
+      background-color: #4B0082; /* Bənövşəyi rəng */
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      color: #87CEEB; /* Açıq göy rəng */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      p {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      button {
+        background-color: #FFD700; /* Qızılı rəng */
+        color: #2E0854; /* Tünd bənövşəyi */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+          background-color: #0B3D91; /* Tünd kosmik mavi */
+          color: #87CEEB; /* Açıq göy rəng */
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

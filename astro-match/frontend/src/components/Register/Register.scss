@@ -1,0 +1,94 @@
+/* components/Register.scss */
+.register-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #1B1931; /* Tünd mavi */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  color: #E9BCB9; /* Bənövşəyi bej */
+  animation: fadeIn 1.5s ease-in-out;
+
+  h2 {
+    font-size: 24px;
+    color: #ED9E59; /* Tünd sarı */
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #E9BCB9; /* Bənövşəyi bej */
+    }
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+  gap: 2rem;
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #662249; /* Dərin qırmızı-pudra */
+        border-radius: 5px;
+        background-color: #44174E; /* Tünd bənövşəyi */
+        color: #fff;
+        font-size: 14px;
+        transition: all 0.3s ease;
+  
+        &:focus {
+          outline: none;
+          border-color: #ED9E59; /* Tünd sarı */
+          background-color: #A34054; /* Gülqırmızı */
+        }
+      }
+}
+  }
+
+  button {
+    background-color: #ED9E59; /* Tünd sarı */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: bounce 1s ease-in-out infinite;
+
+    &:hover {
+      background-color: #A34054; /* Gülqırmızı */
+      transform: translateY(-5px);
+    }
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}

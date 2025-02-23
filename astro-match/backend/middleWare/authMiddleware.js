@@ -1,18 +1,28 @@
+// backend/middleware/authMiddleware.js
 const jwt = require("jsonwebtoken");
 
-exports.verifyToken = (req, res, next) => {
-  const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
+const verifyToken = (req, res, next) => {
+  console.log("Header-dən Token:", req.headers.authorization);
 
+  // Burada Bearer və tokeni ayırırıq
+  const token = req.headers.authorization?.split(" ")[1]; // Bearer Tokeni ayırırıq
   if (!token) {
-    return res.status(403).json({ message: "Token mövcud deyil!" });
+    return res.status(401).json({ message: "Token mövcud deyil!" });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ message: "Token etibarsızdır!" });
-    }
+  try {
+    console.log("JWT Secret:", process.env.JWT_SECRET); // Secret konsolda görmək üçün
 
-    req.userId = decoded.userId;
+    // Tokeni doğrulayırıq
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("Decoded Token:", decoded); // Tokenin açılmış formasını görmək üçün
+
+    req.userId = decoded.userId; // Tokendən userId-ni alırıq
     next();
-  });
+  } catch (err) {
+    console.error("Token doğrulama xətası:", err);
+    return res.status(403).json({ message: "Token etibarsızdır!" });
+  }
 };
+
+module.exports = { verifyToken };
